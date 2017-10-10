@@ -42,7 +42,7 @@ UIWebView* webView;
 
 
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 - (void)checkLocationAuthStatus:(CDVInvokedUrlCommand*)command
@@ -79,7 +79,7 @@ UIWebView* webView;
 
 
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 - (void)requestLocationWhenInUsePermission:(CDVInvokedUrlCommand*)command
@@ -98,7 +98,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:@"OK"];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 
@@ -118,7 +118,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:@"OK"];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -146,7 +146,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 
@@ -163,7 +163,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -181,7 +181,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -198,7 +198,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -216,7 +216,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -235,7 +235,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -255,7 +255,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -274,7 +274,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -293,7 +293,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -313,7 +313,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 
 }
@@ -340,7 +340,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:stringRes];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -362,7 +362,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -379,7 +379,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -396,7 +396,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -413,7 +413,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -430,7 +430,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -447,7 +447,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -464,7 +464,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -481,7 +481,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -498,7 +498,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -515,7 +515,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -532,7 +532,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -549,7 +549,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -567,7 +567,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -588,7 +588,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -605,7 +605,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 - (void)disableMapRotate:(CDVInvokedUrlCommand*)command
@@ -621,7 +621,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -638,7 +638,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 - (void)disableMapScroll:(CDVInvokedUrlCommand*)command
@@ -654,7 +654,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -671,7 +671,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 - (void)disableMapUserInteraction:(CDVInvokedUrlCommand*)command
@@ -687,7 +687,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -713,7 +713,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -736,7 +736,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 
@@ -763,7 +763,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -799,7 +799,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -826,7 +826,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -843,7 +843,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -891,7 +891,7 @@ UIWebView* webView;
     {
         pinAnnotation.pinColor = MKPinAnnotationColorRed;
     }
-    
+
     if ([pinImage length] != 0) {
         pinAnnotation.customImage = YES;
         pinAnnotation.pinImage = pinImage;
@@ -941,7 +941,7 @@ UIWebView* webView;
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
-    [self success:result callbackId:callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 
 }
 
@@ -1062,13 +1062,13 @@ UIWebView* webView;
                 pav.annotation = annotation;
             }
 
-            
+
             ((MKPinAnnotationView *)pav).pinColor = pin.pinColor;
         }
-        
+
         pav.draggable = pin.draggable;
         pav.canShowCallout = pin.canShowCallout;
-        
+
         if (pin.showInfoButton)
         {
             UIButton* info = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
