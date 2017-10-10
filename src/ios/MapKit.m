@@ -132,7 +132,7 @@ UIWebView* webView;
     CGFloat xPos = [[[command arguments] objectAtIndex:3]floatValue];
     CGFloat yPos = [[[command arguments] objectAtIndex:4]floatValue];
 
-    webView = self.webView;
+    webView = (UIWebView*)self.webView;
 
     MKMapView* mapView = [[MKMapView alloc]initWithFrame:CGRectMake(xPos, yPos, width, height)];
     mapView.tag = mapId;
@@ -207,7 +207,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat height = [[[command arguments] objectAtIndex:1]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, mapView.frame.size.width, height)];
 
@@ -226,7 +226,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat width = [[[command arguments] objectAtIndex:1]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, width, mapView.frame.size.height)];
 
@@ -246,7 +246,7 @@ UIWebView* webView;
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat height = [[[command arguments] objectAtIndex:1]floatValue];
     CGFloat width = [[[command arguments] objectAtIndex:2]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, width, height)];
 
@@ -265,7 +265,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat XPos = [[[command arguments] objectAtIndex:1]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(XPos, mapView.frame.origin.y, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -284,7 +284,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat YPos = [[[command arguments] objectAtIndex:1]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, YPos, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -304,7 +304,7 @@ UIWebView* webView;
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat XPos = [[[command arguments] objectAtIndex:1]floatValue];
     CGFloat YPos = [[[command arguments] objectAtIndex:2]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setFrame:CGRectMake(XPos, YPos, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -349,7 +349,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
 
 
@@ -370,7 +370,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsScale = NO;
 
@@ -387,7 +387,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsUserLocation = YES;
 
@@ -404,7 +404,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsUserLocation = NO;
 
@@ -421,7 +421,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsCompass = YES;
 
@@ -438,7 +438,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsCompass = NO;
 
@@ -455,7 +455,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsPointsOfInterest = YES;
 
@@ -472,7 +472,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsPointsOfInterest = NO;
 
@@ -489,7 +489,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsBuildings = YES;
 
@@ -506,7 +506,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsBuildings = NO;
 
@@ -523,7 +523,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsTraffic = YES;
 
@@ -540,7 +540,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     mapView.showsTraffic = NO;
 
@@ -558,7 +558,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat newAlpha = [[[command arguments] objectAtIndex:1] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setAlpha: newAlpha];
 
@@ -578,7 +578,7 @@ UIWebView* webView;
     CGFloat centerLat = [[[command arguments] objectAtIndex:1] floatValue];
     CGFloat centerLon = [[[command arguments] objectAtIndex:2] floatValue];
     BOOL animated = [[[command arguments] objectAtIndex:3] boolValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     CLLocationCoordinate2D newCenter = CLLocationCoordinate2DMake(centerLat, centerLon);
     [mapView setCenterCoordinate:newCenter animated:animated];
@@ -596,7 +596,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setRotateEnabled:YES];
 
@@ -612,7 +612,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setRotateEnabled:NO];
 
@@ -629,7 +629,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setScrollEnabled:YES];
 
@@ -645,7 +645,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setScrollEnabled:NO];
 
@@ -662,7 +662,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setUserInteractionEnabled:YES];
 
@@ -678,7 +678,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView setUserInteractionEnabled:NO];
 
@@ -700,7 +700,7 @@ UIWebView* webView;
     CGFloat spanLat = [[[command arguments] objectAtIndex:3] floatValue];
     CGFloat spanLon = [[[command arguments] objectAtIndex:4] floatValue];
     BOOL animated = [[[command arguments] objectAtIndex:5] boolValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     CLLocationCoordinate2D newCenter = CLLocationCoordinate2DMake(centerLat, centerLon);
     MKCoordinateSpan newSpan = MKCoordinateSpanMake(spanLat, spanLon);
@@ -722,7 +722,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
 
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     CLLocationCoordinate2D center = mapView.centerCoordinate;
     CGPoint centerPoint = CGPointMake(center.longitude, center.latitude);
@@ -749,7 +749,7 @@ UIWebView* webView;
     CGFloat lon = [[[command arguments] objectAtIndex:2]floatValue];
     NSString* title = [[command arguments] objectAtIndex:3];
     NSString* description = [[command arguments] objectAtIndex:4];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     MKPointAnnotation* pin = [[MKPointAnnotation alloc]init];
     pin.coordinate = CLLocationCoordinate2DMake(lat, lon);
@@ -771,7 +771,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     NSArray* pins = [[command arguments] objectAtIndex:1];
     NSMutableArray* Pins = [[NSMutableArray alloc] init];
@@ -808,7 +808,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     NSString* pinTitle = [[command arguments] objectAtIndex:1];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     NSArray* pins = [mapView annotations];
 
@@ -834,7 +834,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
     [mapView removeAnnotations:mapView.annotations];
 
@@ -863,7 +863,7 @@ UIWebView* webView;
     CGFloat canShowCallout = [[[command arguments] objectAtIndex:10] floatValue];
     CGFloat showInfoButton = [[[command arguments] objectAtIndex:11] floatValue];
 //    CGFloat inaccuracyRadius = [[[command arguments] objectAtIndex:6]floatValue];
-    MKMapView* mapView = [self.webView viewWithTag:mapId];
+    MKMapView* mapView = [(UIWebView*)self.webView viewWithTag:mapId];
 
 
 
@@ -964,7 +964,11 @@ UIWebView* webView;
       NSLog(jsParam);
 
       NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinInfoClickCallback(%@);", jsParam];
+<<<<<<< HEAD
       [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
+=======
+      [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
+>>>>>>> fix-webview
     }
 
 }
@@ -992,7 +996,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinDragCallback(%@);", jsParam];
-        [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
+        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
     }
 
 }
@@ -1017,7 +1021,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinClickCallback(%@);", jsParam];
-        [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
+        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
     }
 }
 
