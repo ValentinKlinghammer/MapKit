@@ -964,7 +964,7 @@ UIWebView* webView;
       NSLog(jsParam);
 
       NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinInfoClickCallback(%@);", jsParam];
-      [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+      [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
     }
 
 }
@@ -992,7 +992,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinDragCallback(%@);", jsParam];
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+        [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
     }
 
 }
@@ -1017,7 +1017,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinClickCallback(%@);", jsParam];
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+        [self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:jsString)];
     }
 }
 
