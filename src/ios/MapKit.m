@@ -964,7 +964,7 @@ UIWebView* webView;
       NSLog(jsParam);
 
       NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinInfoClickCallback(%@);", jsParam];
-      [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString:];
+      [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
     }
 
 }
