@@ -137,10 +137,9 @@ UIWebView* webView;
     MKMapView* mapView = [[MKMapView alloc]initWithFrame:CGRectMake(xPos, yPos, width, height)];
     mapView.tag = mapId;
     mapView.delegate = self;
-    [webView addSubview:mapView];
-
-
-
+    // [webView addSubview:mapView];
+    [webView.superview insertSubview:mapView belowSubview:webView];
+    [webView setBackgroundColor:[UIColor clearColor]];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
