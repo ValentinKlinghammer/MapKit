@@ -734,6 +734,32 @@ UIWebView* webView;
 
 }
 
+- (void)setMapRoute:(CDVInvokedUrlCommand*)command
+{
+    CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
+    NSDictionary *json = [command.arguments objectAtIndex:1];
+    MKMapView* mapView = self.mapView;
+
+    NSArray *points = [json objectForKey:@"points"];
+    int i = 0;
+    NSDictionary *latLng;
+    CLLocationCoordinate2D coordinates[points.count];
+    for (i = 0; i < points.count; i++) {
+        latLng = [points objectAtIndex:i];
+        coordinates[i] = CLLocationCoordinate2DMake([[latLng objectForKey:@"lat"] floatValue], [[latLng objectForKey:@"lng"] floatValue]);
+    }
+
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:points.count];
+    [mapView addOverlay:polyline level:(MKOverlayLevelAboveLabels)];
+
+    CDVPluginResult* result = [CDVPluginResult
+                               resultWithStatus:CDVCommandStatus_OK
+                               messageAsString:[NSString stringWithFormat:@"%f", mapId]];
+
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+
+}
+
 - (void)setMapZone:(CDVInvokedUrlCommand*)command
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
