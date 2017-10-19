@@ -411,6 +411,29 @@ var MKMap = function (mapId) {
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRegion', [this.mapArrayId, centerLat, centerLon, spanLat, spanLon, animated])
   }
 
+  this.clearMapOverlays = function () {
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'clearMapOverlays', [this.mapArrayId])
+  }
+
+  /**
+   * lat, lng
+   */
+  this.setMapRoute = function (data) {
+    if (!data) { return; }
+    if (!data.points || !data.points.length) { return; }
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRoute', [this.mapArrayId, { points: data.points }])
+  }
+
+  /**
+   * lat, lng
+   */
+  this.setMapZone = function (data) {
+    if (!data) { return; }
+    if (!data.points || !data.points.length) { return; }
+    data.color = data.color || '#FF0000';
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapZone', [this.mapArrayId, data])
+  }
+
   this.setMapOpacity = function (opacity) {
     that = this
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapOpacity', [this.mapArrayId, opacity])
