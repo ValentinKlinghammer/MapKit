@@ -411,6 +411,10 @@ var MKMap = function (mapId) {
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRegion', [this.mapArrayId, centerLat, centerLon, spanLat, spanLon, animated])
   }
 
+  this.clearMapOverlays = function () {
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'clearMapOverlays', [this.mapArrayId, { points: data.points }])
+  }
+
   /**
    * lat, lng
    */

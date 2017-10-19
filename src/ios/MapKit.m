@@ -188,7 +188,6 @@ UIWebView* webView;
 
 }
 
-
 - (void)removeMapView:(CDVInvokedUrlCommand*)command
 {
     NSString* callbackId = [command callbackId];
@@ -694,6 +693,21 @@ UIWebView* webView;
 
 }
 
+- (void)clearMapOverlays:(CDVInvokedUrlCommand*)command
+{
+    CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
+    MKMapView *mapView = self.mapView;
+
+    [mapView removeOverlays:[mapView overlays]];
+
+    CDVPluginResult* result = [CDVPluginResult
+                               resultWithStatus:CDVCommandStatus_OK
+                               messageAsString:[NSString stringWithFormat:@"%f", mapId]];
+
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+
+}
+
 - (void)setMapRegion:(CDVInvokedUrlCommand*)command
 {
     NSString* callbackId = [command callbackId];
@@ -780,6 +794,7 @@ UIWebView* webView;
 
     return nil;
 }
+
 
 - (void)getMapCenter:(CDVInvokedUrlCommand*)command
 {
