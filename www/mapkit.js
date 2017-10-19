@@ -412,7 +412,7 @@ var MKMap = function (mapId) {
   }
 
   this.clearMapOverlays = function () {
-    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'clearMapOverlays', [this.mapArrayId, { points: data.points }])
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'clearMapOverlays', [this.mapArrayId])
   }
 
   /**
