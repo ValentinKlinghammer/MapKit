@@ -720,12 +720,13 @@ UIWebView* webView;
 
 }
 
-
-- (void)setMapRoute:(CDVInvokedUrlCommand*)command
+- (void)setMapZone:(CDVInvokedUrlCommand*)command
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     NSDictionary *json = [command.arguments objectAtIndex:1];
-    MKMapView* mapView = self.mapView;//[(UIWebView*)self.webView viewWithTag:mapId];
+    MKMapView* mapView = self.mapView;
+
+    NSString *hexColor = [json objectForKey:@"color"];
 
     NSArray *points = [json objectForKey:@"points"];
     int i = 0;
@@ -733,31 +734,52 @@ UIWebView* webView;
     CLLocationCoordinate2D coordinates[points.count];
     for (i = 0; i < points.count; i++) {
         latLng = [points objectAtIndex:i];
-        NSLog(@"lat: %f, lng: %f", [[latLng objectForKey:@"lat"] floatValue], [[latLng objectForKey:@"lng"] floatValue]);
         coordinates[i] = CLLocationCoordinate2DMake([[latLng objectForKey:@"lat"] floatValue], [[latLng objectForKey:@"lng"] floatValue]);
     }
 
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:points.count];
-
-    [mapView addOverlay:polyline level:(MKOverlayLevelAboveRoads)];
+    MKPolygon *polygon = [MKPolygon polygonWithCoordinates:coordinates count:points.count];
+    polygon.title = hexColor;
+    [mapView addOverlay:polygon level:(MKOverlayLevelAboveRoads)];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
 
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay{
 
-    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-    renderer.strokeColor = [UIColor blueColor];
-    renderer.lineWidth = 1.f;
+    NSLog(@"%@", overlay.title);
 
-    return renderer;
+    if ([overlay isKindOfClass: [MKPolyline class]]) {
+        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+        renderer.strokeColor = [UIColor blueColor];
+        renderer.lineWidth = 1.f;
+
+        return renderer;
+    }
+
+    if ([overlay isKindOfClass: [MKPolygon class]]) {
+
+        // TODO We need to check wether the title string is valid hex
+        unsigned rgbValue = 0;
+        NSScanner *scanner = [NSScanner scannerWithString:overlay.title];
+        [scanner setScanLocation:1];
+        [scanner scanHexInt:&rgbValue];
+        UIColor *color = UIColorFromRGB(rgbValue);
+        UIColor *colorWithAlpha = [color colorWithAlphaComponent:0.4];
+
+        MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithOverlay:overlay];
+        renderer.strokeColor = color;
+        renderer.fillColor = colorWithAlpha;
+        renderer.lineWidth = 1.f;
+
+        return renderer;
+    }
+
+    return nil;
 }
-
 
 - (void)getMapCenter:(CDVInvokedUrlCommand*)command
 {
@@ -903,18 +925,13 @@ UIWebView* webView;
     CGFloat draggable = [[[command arguments] objectAtIndex:9] floatValue];
     CGFloat canShowCallout = [[[command arguments] objectAtIndex:10] floatValue];
     CGFloat showInfoButton = [[[command arguments] objectAtIndex:11] floatValue];
-//    CGFloat inaccuracyRadius = [[[command arguments] objectAtIndex:6]floatValue];
-   MKMapView *mapView = self.mapView;
-
-
+    MKMapView *mapView = self.mapView;
 
     MKComplexMapPin* pinAnnotation = [[MKComplexMapPin alloc] init];
     pinAnnotation.coordinate = CLLocationCoordinate2DMake(lat, lon);
     pinAnnotation.title = title;
     pinAnnotation.subtitle = description;
     pinAnnotation.mapId = mapId;
-
-
 
     if (pinColor == 1)
     {

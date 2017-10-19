@@ -415,10 +415,19 @@ var MKMap = function (mapId) {
    * lat, lng
    */
   this.setMapRoute = function (data) {
-    console.log('setMapRoute', data);
     if (!data) { return; }
     if (!data.points || !data.points.length) { return; }
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRoute', [this.mapArrayId, { points: data.points }])
+  }
+
+  /**
+   * lat, lng
+   */
+  this.setMapZone = function (data) {
+    if (!data) { return; }
+    if (!data.points || !data.points.length) { return; }
+    data.color = data.color || '#FF0000';
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapZone', [this.mapArrayId, data])
   }
 
   this.setMapOpacity = function (opacity) {
