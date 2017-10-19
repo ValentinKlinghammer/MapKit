@@ -411,6 +411,16 @@ var MKMap = function (mapId) {
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRegion', [this.mapArrayId, centerLat, centerLon, spanLat, spanLon, animated])
   }
 
+  /**
+   * lat, lng
+   */
+  this.setMapRoute = function (data) {
+    console.log('setMapRoute', data);
+    if (!data) { return; }
+    if (!data.points || !data.points.length) { return; }
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapRoute', [this.mapArrayId, { points: data.points }])
+  }
+
   this.setMapOpacity = function (opacity) {
     that = this
     cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapOpacity', [this.mapArrayId, opacity])
