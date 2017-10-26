@@ -802,8 +802,8 @@ UIWebView* webView;
 
     if ([overlay isKindOfClass: [MKPolyline class]]) {
         MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-        renderer.strokeColor = [UIColor blueColor];
-        renderer.lineWidth = 1.f;
+        renderer.strokeColor = [UIColor orangeColor];
+        renderer.lineWidth = 3.f;
 
         return renderer;
     }
