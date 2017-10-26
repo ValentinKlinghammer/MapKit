@@ -47,6 +47,14 @@ UIWebView* webView;
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
+- (void)execJS: (NSString *)jsString {
+    if ([self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:)]) {
+        [self.webView performSelector:@selector(stringByEvaluatingJavaScriptFromString:) withObject:jsString];
+    } else if ([self.webView respondsToSelector:@selector(evaluateJavaScript:completionHandler:)]) {
+        [self.webView performSelector:@selector(evaluateJavaScript:completionHandler:) withObject:jsString withObject:nil];
+    }
+}
+
 - (void)checkLocationAuthStatus:(CDVInvokedUrlCommand*)command
 {
     NSString* callbackId = [command callbackId];
@@ -1091,7 +1099,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinDragCallback(%@);", jsParam];
-        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
+        [self execJS:jsString];
     }
 
 }
@@ -1116,7 +1124,7 @@ UIWebView* webView;
         NSLog(jsParam);
 
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinClickCallback(%@);", jsParam];
-        [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:jsString];
+        [self execJS:jsString];
     }
 }
 

@@ -542,7 +542,6 @@ function handlePinDragCallback(mapId, title, lat, lon)
 
 function handlePinClickCallback(mapId, title)
 {
-  console.log("Got pin click on Map: ${parseInt(mapId)} on Pin: ${title}")
   Pin = MapArray[parseInt(mapId)].Pins[title]
   Pin.pinClickCallback(Pin)
 }
