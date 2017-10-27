@@ -6,6 +6,7 @@
 //
 //
 
+#import "CDVWKWebViewEngine.h"
 #import "MapKit.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
@@ -166,6 +167,8 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     MKMapView* mapView = self.mapView;
+    AlphaPassUIWebView* webView = self.webView;
+    [webView setAlphaPassEnabled:YES];
 
     mapView.hidden = NO;
 
@@ -183,10 +186,12 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = self.mapView;
 
+    MKMapView* mapView = self.mapView;
     mapView.hidden = YES;
 
+    AlphaPassUIWebView* webView = self.webView;
+    [webView setAlphaPassEnabled:NO];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
@@ -1207,4 +1212,5 @@ UIWebView* webView;
 
 
 @end
+
 
