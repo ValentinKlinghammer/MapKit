@@ -1128,6 +1128,8 @@ UIWebView* webView;
         [jsParam appendString:@"\""];
         NSLog(jsParam);
 
+        [mapView deselectAnnotation:view.annotation animated:NO];
+
         NSString* jsString = [NSString stringWithFormat:@"MKInterface.__objc__.pinClickCallback(%@);", jsParam];
         [self execJS:jsString];
     }
