@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="no.hotdot.mapkit" version="0.0.2">
+    id="cordova-plugin-mapkit" version="0.5.0">
     <name>MapKit</name>
-    <description>Cordova Plugin for Native Maps</description>
-    <license>HotDot Open Source License</license>
+    <description>Cordova Plugin for Apple Mapkit</description>
+    <license>MIT</license>
     <keywords>cordova,device,maps,mapkit,apple,applemaps</keywords>
     <js-module src="www/mapkit.js" name="mapkit">
         <clobbers target="mapkit" />
