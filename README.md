@@ -1,6 +1,5 @@
-# MapKit
-## Current Version: 0.5.0
-MapKit is a plugin that allows you to use the Apple MapKit in Cordova iOS apps.
+# cordova-plugin-mapkit
+cordova-plugin-mapkit is a plugin that allows you to use maps built with Apple MapKit in Cordova iOS apps.
 
 ## Installation
 `$ cordova plugin add https://github.com/ValentinKlinghammer/cordova-plugin-mapkit.git`
@@ -13,10 +12,10 @@ This can be accessed globally as just `MKInterface`.
 
 ### Example
 ```javascript
-var map = new MKInterface.MKMap();          // Creates a new map
-map.setBounds(500, 250);                    // Sets the map to be 500 high and 250 wide
-map.setPosition(50,200);                    // Sets the maps position to be 50 from the left and 200 from the top
-map.createMap();                            // Creates the MapView and shows it on the screen
+var map = new MKInterface.MKMap();  // Creates a new map
+map.setBounds(500, 250);            // Sets the map to be 500 high and 250 wide
+map.setPosition(50,200);            // Sets the maps position to be 50 from the left and 200 from the top
+map.createMap();                    // Creates the MapView and shows it on the screen
 ```
 
 ### Full Documentation
