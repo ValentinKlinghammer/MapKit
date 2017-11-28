@@ -1,5 +1,5 @@
 {
-  "name": "mapkit",
+  "name": "cordova-plugin-mapkit",
   "version": "0.5.0",
   "description": "Cordova Plugin for Native Maps",
   "cordova": {
