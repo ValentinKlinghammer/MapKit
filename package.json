@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ValentinKlinnghammer/MapKit.git"
+    "url": "git+https://github.com/ValentinKlinnghammer/cordova-plugin-mapkit.git"
   },
   "keywords": [
     "cordova",
@@ -30,7 +30,7 @@
   "author": "Valentin Klinghammer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ValentinKlinnghammer/MapKit/issues"
+    "url": "https://github.com/ValentinKlinnghammer/cordova-plugin-mapkit/issues"
   },
-  "homepage": "https://github.com/ValentinKlinnghammer/MapKit#readme"
+  "homepage": "https://github.com/ValentinKlinnghammer/cordova-plugin-mapkit#readme"
 }
