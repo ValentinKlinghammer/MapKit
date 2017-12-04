@@ -773,6 +773,49 @@ UIWebView* webView;
 
 }
 
+- (void)setMapDirectionRoute:(CDVInvokedUrlCommand*)command
+{
+   CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
+   NSDictionary *json = [command.arguments objectAtIndex:1];
+   MKMapView* mapView = self.mapView;
+
+   NSArray *points = [json objectForKey:@"points"];
+   int i = 0;
+   NSDictionary *latLng;
+   MKMapItem *coordinates[points.count];
+   for (i = 0; i < points.count; i++) {
+      latLng = [points objectAtIndex:i];
+      MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake([[latLng objectForKey:@"lat"] floatValue], [[latLng objectForKey:@"lng"] floatValue]) addressDictionary:nil];
+      coordinates[i] = [[MKMapItem alloc] initWithPlacemark:placemark];
+   }
+
+   // TODO Create thingy for directions
+   for (i = 1; i < points.count; i++) {
+      MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
+      [directionsRequest setTransportType:MKDirectionsTransportTypeWalking];
+      [directionsRequest setSource:coordinates[i-1]];
+      [directionsRequest setDestination:coordinates[i]];
+      [directionsRequest setRequestsAlternateRoutes:NO];
+      MKDirections *direction = [[MKDirections alloc] initWithRequest:directionsRequest];
+
+      // For each object in the locations array, we request that route from its origin and its destination
+      [direction calculateDirectionsWithCompletionHandler: ^(MKDirectionsResponse *response, NSError *error) {
+         if (error) {
+            NSLog(@"There was an error getting your directions");
+            return;
+         }
+         MKRoute *route = [response.routes firstObject];
+         [mapView addOverlay:route.polyline level:(MKOverlayLevelAboveLabels)];
+      }];
+   }
+
+   CDVPluginResult* result = [CDVPluginResult
+      resultWithStatus:CDVCommandStatus_OK
+       messageAsString:[NSString stringWithFormat:@"%f", mapId]];
+
+   [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+}
+
 - (void)setMapZone:(CDVInvokedUrlCommand*)command
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];

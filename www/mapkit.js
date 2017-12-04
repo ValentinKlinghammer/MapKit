@@ -427,6 +427,15 @@ var MKMap = function (mapId) {
   /**
    * lat, lng
    */
+  this.setMapDirectionRoute = function (data) {
+    if (!data) { return; }
+    if (!data.points || !data.points.length) { return; }
+    cordova.exec(this.execSuccess, this.execFailure, 'MapKit', 'setMapDirectionRoute', [this.mapArrayId, { points: data.points }])
+  }
+
+  /**
+   * lat, lng
+   */
   this.setMapZone = function (data) {
     if (!data) { return; }
     if (!data.points || !data.points.length) { return; }

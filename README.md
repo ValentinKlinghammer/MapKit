@@ -54,6 +54,11 @@ Returns a new object of the type `MKMap`.
 - `MKMap.hideMap()` (Method) Used to hide the map. Hidden maps do in interact with the user and touch events will not be captured.
 - `MKMap.destroyMap()` (Method) Used to destroy the map. This will remove the map entirely. In most cases hiding the map would make more sense. Destroyed maps CAN NOT be reused or recreated, you'll have to create a new map.
 
+#### Overlay Methods
+- `setMapRoute` (Method) Used to display straight lines between multiple points
+- `setMapDirectionRoute` (Method) Used to display lines using streets (directions) between multiple points
+- `setMapZone` (Method) Used to display a polygon with provided color
+
 #### Map-Manipulation Methods
 - `MKMap.showMapScale()` (Method) Shows the distance scale on the map.
 - `MKMap.hideMapScale()` (Method) Hides the distance scale from the map.
