@@ -154,6 +154,9 @@ UIWebView* webView;
     [webView setBackgroundColor:[UIColor clearColor]];
     [webView setOpaque:NO];
 
+    // TODO Make this part of the showCompass method
+    [mapView setLayoutMargins:UIEdgeInsetsMake(175, 0, 0, 25)];
+
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:[NSString stringWithFormat:@"%f", mapId]];
