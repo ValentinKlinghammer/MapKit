@@ -12,25 +12,43 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MKComplexMapPin.h"
 
-@interface MapKit ()<MKMapViewDelegate>
-
-@property (nonatomic, strong) MKMapView *mapView;
+@interface MyMapView: MKMapView
 @end
 
+@implementation MyMapView
+- (void) layoutSubviews
+{
+  [super layoutSubviews];
+    
+    for(UIView *view in self.subviews)
+    {
+        if([view isKindOfClass:NSClassFromString(@"MKCompassView")]) {
+            NSLog(@"%@", view);
+            
+            float width = view.frame.size.width;
+            float height = view.frame.size.height;
+            view.frame = CGRectMake(self.bounds.size.width - width - 28, 180, width, height);
+        }
+    }
+    return;
+}
+
+@end
+
+@interface MapKit ()<MKMapViewDelegate>
+
+@property (nonatomic, strong) MyMapView *mapView;
+@end
 
 @implementation MapKit
 
 CLLocationManager* locationManager;
 UIWebView* webView;
 
-//NSMutableDictionary* pinColors;
-
 - (id)init
 {
 
 }
-
-
 
 - (void)test:(CDVInvokedUrlCommand*)command
 {
@@ -145,7 +163,7 @@ UIWebView* webView;
 
     webView = (UIWebView*)self.webView;
 
-    MKMapView* mapView = [[MKMapView alloc]initWithFrame:CGRectMake(xPos, yPos, width, height)];
+    MyMapView* mapView = [[MyMapView alloc]initWithFrame:CGRectMake(xPos, yPos, width, height)];
     mapView.tag = mapId;
     mapView.delegate = self;
     _mapView = mapView;
@@ -153,9 +171,6 @@ UIWebView* webView;
     [webView.superview insertSubview:mapView belowSubview:webView];
     [webView setBackgroundColor:[UIColor clearColor]];
     [webView setOpaque:NO];
-
-    // TODO Make this part of the showCompass method
-    [mapView setLayoutMargins:UIEdgeInsetsMake(175, 0, 0, 25)];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
@@ -169,7 +184,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
     AlphaPassUIWebView* webView = self.webView;
     [webView setAlphaPassEnabled:YES];
 
@@ -190,7 +205,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
 
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
     mapView.hidden = YES;
 
     AlphaPassUIWebView* webView = self.webView;
@@ -208,7 +223,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
     [mapView removeFromSuperview];
 
 
@@ -225,7 +240,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat height = [[[command arguments] objectAtIndex:1]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, mapView.frame.size.width, height)];
 
@@ -244,7 +259,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat width = [[[command arguments] objectAtIndex:1]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, width, mapView.frame.size.height)];
 
@@ -264,7 +279,7 @@ UIWebView* webView;
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat height = [[[command arguments] objectAtIndex:1]floatValue];
     CGFloat width = [[[command arguments] objectAtIndex:2]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, mapView.frame.origin.y, width, height)];
 
@@ -283,7 +298,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat XPos = [[[command arguments] objectAtIndex:1]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(XPos, mapView.frame.origin.y, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -302,7 +317,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat YPos = [[[command arguments] objectAtIndex:1]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(mapView.frame.origin.x, YPos, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -322,7 +337,7 @@ UIWebView* webView;
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat XPos = [[[command arguments] objectAtIndex:1]floatValue];
     CGFloat YPos = [[[command arguments] objectAtIndex:2]floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setFrame:CGRectMake(XPos, YPos, mapView.frame.size.width, mapView.frame.size.height)];
 
@@ -342,7 +357,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
 
     NSString* stringRes;
 
@@ -367,7 +382,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
 
 
@@ -388,7 +403,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsScale = NO;
 
@@ -405,7 +420,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsUserLocation = YES;
 
@@ -422,7 +437,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsUserLocation = NO;
 
@@ -439,7 +454,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsCompass = YES;
 
@@ -456,7 +471,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsCompass = NO;
 
@@ -473,7 +488,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsPointsOfInterest = YES;
 
@@ -490,7 +505,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsPointsOfInterest = NO;
 
@@ -507,7 +522,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsBuildings = YES;
 
@@ -524,7 +539,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsBuildings = NO;
 
@@ -541,7 +556,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsTraffic = YES;
 
@@ -558,7 +573,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     mapView.showsTraffic = NO;
 
@@ -576,7 +591,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     CGFloat newAlpha = [[[command arguments] objectAtIndex:1] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setAlpha: newAlpha];
 
@@ -596,7 +611,7 @@ UIWebView* webView;
     CGFloat centerLat = [[[command arguments] objectAtIndex:1] floatValue];
     CGFloat centerLon = [[[command arguments] objectAtIndex:2] floatValue];
     BOOL animated = [[[command arguments] objectAtIndex:3] boolValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     CLLocationCoordinate2D newCenter = CLLocationCoordinate2DMake(centerLat, centerLon);
     [mapView setCenterCoordinate:newCenter animated:animated];
@@ -614,7 +629,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setRotateEnabled:YES];
 
@@ -630,7 +645,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setRotateEnabled:NO];
 
@@ -647,7 +662,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setScrollEnabled:YES];
 
@@ -663,7 +678,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setScrollEnabled:NO];
 
@@ -680,7 +695,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setUserInteractionEnabled:YES];
 
@@ -696,7 +711,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView setUserInteractionEnabled:NO];
 
@@ -712,7 +727,7 @@ UIWebView* webView;
 - (void)clearMapOverlays:(CDVInvokedUrlCommand*)command
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-    MKMapView *mapView = self.mapView;
+    MyMapView *mapView = self.mapView;
 
     [mapView removeOverlays:[mapView overlays]];
 
@@ -733,7 +748,7 @@ UIWebView* webView;
     CGFloat spanLat = [[[command arguments] objectAtIndex:3] floatValue];
     CGFloat spanLon = [[[command arguments] objectAtIndex:4] floatValue];
     BOOL animated = [[[command arguments] objectAtIndex:5] boolValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     CLLocationCoordinate2D newCenter = CLLocationCoordinate2DMake(centerLat, centerLon);
     MKCoordinateSpan newSpan = MKCoordinateSpanMake(spanLat, spanLon);
@@ -754,7 +769,7 @@ UIWebView* webView;
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     NSDictionary *json = [command.arguments objectAtIndex:1];
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
 
     NSArray *points = [json objectForKey:@"points"];
     int i = 0;
@@ -780,7 +795,7 @@ UIWebView* webView;
 {
    CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
    NSDictionary *json = [command.arguments objectAtIndex:1];
-   MKMapView* mapView = self.mapView;
+   MyMapView* mapView = self.mapView;
 
    NSArray *points = [json objectForKey:@"points"];
    int i = 0;
@@ -823,7 +838,7 @@ UIWebView* webView;
 {
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     NSDictionary *json = [command.arguments objectAtIndex:1];
-    MKMapView* mapView = self.mapView;
+    MyMapView* mapView = self.mapView;
 
     NSString *hexColor = [json objectForKey:@"color"];
 
@@ -847,7 +862,7 @@ UIWebView* webView;
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay{
+- (MKOverlayRenderer *)mapView:(MyMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay{
 
     NSLog(@"%@", overlay.title);
 
@@ -886,7 +901,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
 
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     CLLocationCoordinate2D center = mapView.centerCoordinate;
     CGPoint centerPoint = CGPointMake(center.longitude, center.latitude);
@@ -912,7 +927,7 @@ UIWebView* webView;
     CGFloat lon = [[[command arguments] objectAtIndex:2]floatValue];
     NSString* title = [[command arguments] objectAtIndex:3];
     NSString* description = [[command arguments] objectAtIndex:4];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     MKPointAnnotation* pin = [[MKPointAnnotation alloc]init];
     pin.coordinate = CLLocationCoordinate2DMake(lat, lon);
@@ -934,7 +949,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     NSArray* pins = [[command arguments] objectAtIndex:1];
     NSMutableArray* Pins = [[NSMutableArray alloc] init];
@@ -971,7 +986,7 @@ UIWebView* webView;
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
     NSString* pinTitle = [[command arguments] objectAtIndex:1];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     NSArray* pins = [mapView annotations];
 
@@ -997,7 +1012,7 @@ UIWebView* webView;
 {
     NSString* callbackId = [command callbackId];
     CGFloat mapId = [[[command arguments] objectAtIndex:0] floatValue];
-   MKMapView *mapView = self.mapView;
+   MyMapView *mapView = self.mapView;
 
     [mapView removeAnnotations:mapView.annotations];
 
@@ -1025,7 +1040,7 @@ UIWebView* webView;
     CGFloat draggable = [[[command arguments] objectAtIndex:9] floatValue];
     CGFloat canShowCallout = [[[command arguments] objectAtIndex:10] floatValue];
     CGFloat showInfoButton = [[[command arguments] objectAtIndex:11] floatValue];
-    MKMapView *mapView = self.mapView;
+    MyMapView *mapView = self.mapView;
 
     MKComplexMapPin* pinAnnotation = [[MKComplexMapPin alloc] init];
     pinAnnotation.coordinate = CLLocationCoordinate2DMake(lat, lon);
@@ -1103,7 +1118,7 @@ UIWebView* webView;
 
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+-(void)mapView:(MyMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     id <MKAnnotation> annotation = [view annotation];
     if ([annotation isKindOfClass:[MKComplexMapPin class]])
     {
@@ -1127,7 +1142,7 @@ UIWebView* webView;
 
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+-(void)mapView:(MyMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     id <MKAnnotation> annotation = [view annotation];
     if ([annotation isKindOfClass:[MKComplexMapPin class]] && newState == MKAnnotationViewDragStateEnding)
     {
@@ -1155,7 +1170,7 @@ UIWebView* webView;
 
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(nonnull MKAnnotationView *)view
+- (void)mapView:(MyMapView *)mapView didSelectAnnotationView:(nonnull MKAnnotationView *)view
 {
     id <MKAnnotation> annotation = [view annotation];
     if ([annotation isKindOfClass:[MKComplexMapPin class]])
@@ -1181,7 +1196,7 @@ UIWebView* webView;
     }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MyMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
